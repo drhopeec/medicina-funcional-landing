@@ -33,7 +33,7 @@
         a { text-decoration: none; color: inherit; }
         img { max-width: 100%; display: block; }
 
-        /* --- CLASES UTILITARIAS (Para evitar estilos inline) --- */
+        /* --- CLASES UTILITARIAS --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .section-padding { padding: 80px 0; }
         .text-center { text-align: center; }
@@ -62,8 +62,9 @@
             background-color: #EBF8FF; border-left: 4px solid var(--primary);
             padding: 20px; border-radius: 4px; margin-top: 20px;
         }
-        .highlight-box p { margin: 0; } /* Elimina margen interno */
-        .highlight-box-white { background: var(--white); border: 1px solid var(--border); display: inline-block; }
+        .highlight-box p { margin: 0; }
+        .highlight-box-white { background: var(--white); border: 1px solid var(--border); display: inline-block; padding: 20px; border-radius: 4px; }
+        .highlight-box-white p { margin: 0; }
 
         /* --- SECCIONES --- */
         .hero { background-color: var(--bg-light); padding: 100px 0 80px; text-align: center; }
@@ -103,8 +104,16 @@
         .results { background-color: var(--bg-light); }
         .results-list-container { max-width: 700px; margin: 30px auto; text-align: left; }
 
+        /* --- BIO SECTION (Corrección Mobile) --- */
         .bio-container { display: flex; gap: 40px; align-items: center; }
-        .bio-image { flex: 0 0 300px; height: 300px; background-color: #ddd; border-radius: var(--radius); overflow: hidden; position: relative; }
+        .bio-image { 
+            flex: 0 0 300px; /* Tamaño fijo en escritorio */
+            height: 300px; 
+            background-color: #ddd; 
+            border-radius: var(--radius); 
+            overflow: hidden; 
+            position: relative; 
+        }
         .bio-image img { width: 100%; height: 100%; object-fit: cover; }
         .bio-content { flex: 1; }
         .credentials { font-size: 0.9rem; color: var(--text-light); margin-top: 20px; background: #f4f4f4; padding: 15px; border-radius: 4px; }
@@ -119,11 +128,28 @@
 
         footer { background: var(--primary-dark); color: #aaa; padding: 40px 0; font-size: 0.9rem; }
 
-        /* RESPONSIVE */
+        /* --- RESPONSIVE FIXES (AQUÍ ESTÁ LA SOLUCIÓN) --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            .empathy-grid, .qualifiers-grid, .bio-container { grid-template-columns: 1fr; }
-            .bio-image { margin: 0 auto 20px; flex: 0 0 250px; height: 250px; width: 250px; border-radius: 50%; }
+            
+            /* Arregla las grillas de 2 columnas para que sean de 1 columna */
+            .empathy-grid, .qualifiers-grid { grid-template-columns: 1fr; }
+            
+            /* Arregla la sección BIO en celular */
+            .bio-container { 
+                flex-direction: column; /* Pone los elementos uno sobre otro */
+                text-align: center; /* Centra el texto */
+            }
+            .bio-image { 
+                margin: 0 auto 20px auto; /* Centra la imagen horizontalmente */
+                flex: 0 0 250px; /* Tamaño más pequeño para celular */
+                height: 250px; 
+                width: 250px; 
+                border-radius: 50%; /* Opcional: la hace circular en celular */
+            }
+            .bio-content { width: 100%; text-align: left; } /* Devuelve el texto a la izquierda para leer mejor */
+
+            /* Ajustes de Timeline en celular */
             .timeline::before { left: 15px; }
             .timeline-step { padding-left: 50px; }
             .step-number { width: 32px; height: 32px; line-height: 32px; font-size: 0.9rem; }
@@ -295,7 +321,9 @@
     <section class="bio section-padding">
         <div class="container bio-container">
             <div class="bio-image">
-                <img src="foto-drChavez.png" alt="Dr. Jonathan Chávez">
+                
+                <img src=foto-drChavez.jpg alt="Dr. Jonathan Chávez">
+                
             </div>
             <div class="bio-content">
                 <h2>Quién te acompaña</h2>
@@ -350,10 +378,11 @@
             <a href="https://wa.me/593989760520?text=Hola%20doctor,%20quiero%20informaci%C3%B3n%20sobre%20el%20programa%20de%20medicina%20funcional%20y%20salud%20mental." class="btn" target="_blank" rel="noopener noreferrer">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.472 17.527C16.136 18.853 14.331 19.558 12.016 19.558C9.522 19.558 7.331 18.599 5.864 16.969C5.356 16.403 5.378 15.539 5.918 15.004C6.467 14.462 7.34 14.484 7.863 15.064C8.825 16.133 10.231 16.757 12.016 16.757C13.626 16.757 14.931 16.257 15.892 15.304C17.59 13.619 17.414 10.375 15.516 8.358C14.593 7.377 13.349 6.837 12.016 6.837C10.669 6.837 9.418 7.388 8.491 8.388C7.575 9.378 7.104 10.748 7.234 12.083L7.336 13.134L6.151 16.689L9.658 15.988L10.605 16.177C10.745 16.205 10.885 16.218 11.025 16.218C11.644 16.218 12.204 15.82 12.378 15.225C12.593 14.488 12.164 13.722 11.427 13.507C11.156 13.428 10.395 13.208 10.395 13.208L9.073 13.472L8.625 11.957C8.563 11.332 8.782 10.697 9.222 10.222C9.845 9.55 10.678 9.176 11.583 9.176C12.474 9.176 13.314 9.541 13.939 10.205C15.176 11.519 15.132 13.593 14.473 14.246C14.187 14.53 14.181 14.99 14.457 15.281C14.733 15.572 15.19 15.58 15.483 15.29C17.728 13.063 17.79 9.358 15.939 7.391C14.869 6.254 13.486 5.628 12.016 5.628C9.976 5.628 8.114 6.643 6.845 8.358C6.391 7.822 5.865 7.338 5.275 6.945C4.664 6.538 3.845 6.702 3.438 7.312C3.031 7.922 3.195 8.742 3.805 9.148C4.161 9.385 4.491 9.664 4.793 9.986C3.991 11.59 3.991 13.432 4.793 15.036C5.06 15.57 4.834 16.21 4.3 16.477C3.766 16.744 3.126 16.518 2.859 15.984C1.846 13.958 1.846 11.632 2.859 9.606C1.724 8.072 1.635 5.968 2.593 4.35C3.376 3.027 4.966 2.373 6.438 2.768C8.112 1.931 9.998 1.5 11.922 1.5C18.234 1.5 23.367 6.633 23.367 12.945C23.367 19.257 18.234 24.39 11.922 24.39C9.727 24.39 7.647 23.837 5.819 22.846C4.896 23.633 3.791 24.162 2.593 24.35C2.189 24.414 1.777 24.414 1.373 24.35C0.778 24.256 0.366 23.693 0.46 23.098C0.554 22.503 1.117 22.091 1.712 22.185C2.512 22.311 3.253 21.967 3.864 21.432C5.553 22.185 7.399 22.585 9.296 22.585C14.611 22.585 18.934 18.262 18.934 12.947C18.934 10.999 18.337 9.165 17.306 7.618C18.732 8.941 19.558 10.746 19.558 12.684C19.558 14.622 18.732 16.427 17.306 17.75L17.472 17.527Z" fill="white"/>
-                </svg>
-                Agendar llamada de orientación
-            </a>
-            <p class="cta-subtext">Hablemos 15 min para resolver dudas.</p>
+                    </svg>
+                    Agendar llamada de orientación
+                </a>
+                <span class="cta-subtext">Hablemos 15 min para resolver dudas.</span>
+            </div>
         </div>
     </section>
 
