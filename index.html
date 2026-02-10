@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medicina Funcional - Dr. Jonathan Chávez</title>
+
+    <style>
+        :root {
+            --primary: #344E41;
+            --secondary: #A3B18A;
+            --accent: #588157;
+            --text-main: #333333;
+            --text-light: #555555;
+            --bg: #f2f6f7;
+            --card: #ffffff;
+            --border: #E5E7EB;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 70px 0 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin: 0 0 12px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            margin: 0 0 18px;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .bullets {
+            margin: 14px 0 22px;
+            padding-left: 18px;
+            color: var(--text-light);
+        }
+
+        .bullets li {
+            margin-bottom: 10px;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+        }
+
+        .cta:hover {
+            filter: brightness(0.97);
+        }
+
+        .cta-subtext {
+            display: block;
+            margin-top: 10px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .hero-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card h3 {
+            margin: 0 0 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .hero-card p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.98rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 38px 0;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            color: var(--primary);
+            font-size: 1.7rem;
+            line-height: 1.25;
+        }
+
+        .subhead {
+            margin: 0 0 18px;
+            color: var(--text-light);
+            max-width: 860px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .card strong {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        /* Process */
+        .process {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 26px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-step {
+            position: relative;
+            padding-left: 62px;
+            margin-bottom: 22px;
+        }
+
+        .dot {
+            position: absolute;
+            left: 16px;
+            top: 2px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 2px solid #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-step h3 {
+            margin: 0 0 6px;
+            color: var(--primary);
+        }
+
+        .timeline-step p {
+            margin: 0;
+            color: var(--text-light);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .price-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .price-box h3 {
+            margin: 0 0 10px;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 1.9rem;
+            color: var(--accent);
+            font-weight: 800;
+            margin: 10px 0 12px;
+        }
+
+        .price-box ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--text-light);
+        }
+
+        .note {
+            margin-top: 14px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Qualifiers */
+        .qualifiers {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .qualifier-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .qualifier-list {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .qualifier-list h3 {
+            margin: 0 0 10px;
+            color: var(--primary);
+        }
+
+        .qualifier-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            color: var(--text-light);
+        }
+
+        .tick {
+            color: var(--accent);
+            font-weight: 900;
+            margin-top: 1px;
+        }
+
+        /* Guarantee */
+        .guarantee {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .guarantee-box {
+            background: #f4f4f4;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+        }
+
+        /* Bio */
+        .bio {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .bio-image img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        /* FAQ */
+        details {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        details p {
+            margin: 10px 0 0;
+            color: var(--text-light);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 22px 0;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .qualifier-grid {
+                grid-template-columns: 1fr;
+            }
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .timeline::before { left: 15px; }
+            .timeline-step { padding-left: 50px; }
+            .dot { left: 7px; }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="container nav">
+        <div class="brand">Dr. Jonathan Chávez</div>
+        <nav class="nav-links">
+            <a href="#como">Cómo trabajamos</a>
+            <a href="#opciones">Opciones</a>
+            <a href="#faq">Preguntas</a>
+            <a href="#agendar">Agendar</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <h1>Si sientes que ya probaste de todo y sigues igual, miremos tu salud desde otro ángulo.</h1>
+                <p>
+                    Hay casos donde “todo sale normal” pero tú no te sientes normal. Aquí trabajamos con profundidad y
+                    orden: entendemos tu caso, pedimos exámenes con sentido y armamos un plan claro de 8–12 semanas.
+                </p>
+
+                <ul class="bullets">
+                    <li>Un plan escrito y ejecutable (sin vueltas).</li>
+                    <li>Medimos desde el inicio para saber si vas mejorando.</li>
+                    <li>Honestidad: si no encaja, te lo digo.</li>
+                </ul>
+
+                <a class="cta" href="#agendar" aria-label="Agendar llamada">
+                    💬 Agendar llamada de orientación
+                </a>
+                <span class="cta-subtext">Hablemos 20 min para entender tu caso y ver si este enfoque encaja.</span>
+            </div>
+
+            <div class="hero-card">
+                <h3>¿Para quién es?</h3>
+                <p>
+                    Para personas con síntomas persistentes o bienestar estancado, que quieren claridad y un plan serio
+                    (no solo “prueba esto”).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section>
+        <div class="container">
+            <h2>¿Qué puedes esperar de este enfoque?</h2>
+            <p class="subhead">
+                La meta no es “perseguir síntomas”. La meta es entender qué está sosteniendo el problema y ayudarte a
+                tomar buenas decisiones con un plan claro.
+            </p>
+
+            <div class="cards">
+                <div class="card">
+                    <strong>1</strong>
+                    <h3>Claridad</h3>
+                    <p>Entender qué te pasa con una mirada más amplia, conectando piezas que a veces quedan sueltas.</p>
+                </div>
+                <div class="card">
+                    <strong>2</strong>
+                    <h3>Estructura</h3>
+                    <p>Un plan por fases (8–12 semanas), simple y realista, para que puedas sostenerlo.</p>
+                </div>
+                <div class="card">
+                    <strong>3</strong>
+                    <h3>Medición</h3>
+                    <p>Desde el inicio medimos para ajustar con criterio, no por intuición.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="process" id="como">
+        <div class="container">
+            <h2>Cómo trabajamos</h2>
+            <p class="subhead">
+                Paso a paso: entender, medir, planificar y ajustar.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="dot"></div>
+                    <h3>Reunión de exploración (gratis, 20 min)</h3>
+                    <p>Me cuentas tu caso y vemos si este enfoque encaja. Si no encaja, te lo digo con honestidad.</p>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="dot"></div>
+                    <h3>Consulta 1: orden y claridad</h3>
+                    <p>Organizamos tu historia, definimos objetivos y pedimos exámenes con sentido (si hacen falta).</p>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="dot"></div>
+                    <h3>Consulta 2: resultados + plan</h3>
+                    <p>Revisamos exámenes y te entrego un plan escrito de 8–12 semanas, con métricas desde la semana 1.</p>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="dot"></div>
+                    <h3>Consulta 3: control + ajustes</h3>
+                    <p>Medimos progreso, ajustamos y (si aplica) pedimos re-labs para confirmar avances.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPCIONES / PRECIOS -->
+    <section id="opciones">
+        <div class="container">
+            <h2>Opciones de trabajo</h2>
+            <p class="subhead">
+                Primero hacemos la reunión de exploración. Luego eliges la opción que mejor encaje contigo (según tu caso y tu necesidad de acompañamiento).
+            </p>
+
+            <div class="pricing-grid">
+                <div class="price-box">
+                    <h3>Ecuador</h3>
+                    <div class="price">$297 – $497</div>
+                    <ul>
+                        <li><b>3 consultas</b>: evaluación + plan + control.</li>
+                        <li><b>12 semanas</b>: 3 consultas + acompañamiento semanal por chat.</li>
+                    </ul>
+                    <p class="note">*Exámenes, suplementos y medicamentos (si aplica) van aparte.</p>
+                </div>
+
+                <div class="price-box">
+                    <h3>Internacional (MX/US/EU)</h3>
+                    <div class="price">$497 – $690</div>
+                    <ul>
+                        <li><b>3 consultas</b>: evaluación + plan + control.</li>
+                        <li><b>12 semanas</b>: 3 consultas + acompañamiento semanal por chat.</li>
+                    </ul>
+                    <p class="note">*Exámenes, suplementos y medicamentos (si aplica) van aparte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GARANTÍA -->
+    <section class="guarantee">
+        <div class="container">
+            <h2>Garantía de claridad</h2>
+            <div class="guarantee-box">
+                <p style="margin:0;color:var(--text-light);">
+                    Si después de la <b>primera consulta pagada</b> sientes que no te llevas claridad real (qué pasa y qué haríamos),
+                    me lo dices ese mismo día y te devuelvo el dinero. Prefiero transparencia antes que promesas vacías.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARA QUIÉN / PARA QUIÉN NO -->
+    <section class="qualifiers">
+        <div class="container">
+            <h2>¿Encaja contigo?</h2>
+            <p class="subhead">Esto funciona mejor con personas que quieren entender y tomar acción con estructura.</p>
+
+            <div class="qualifier-grid">
+                <div class="qualifier-list">
+                    <h3>Sí encaja si…</h3>
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        <li><span class="tick">✓</span> Estás cansado/a de respuestas vagas y quieres un plan claro.</li>
+                        <li><span class="tick">✓</span> Estás dispuesto/a a medir y sostener cambios básicos.</li>
+                        <li><span class="tick">✓</span> Te interesa entender tu cuerpo (sin volverte obsesivo/a).</li>
+                        <li><span class="tick">✓</span> Quieres decisiones mejores, no “parches” eternos.</li>
+                    </ul>
+                </div>
+
+                <div class="qualifier-list">
+                    <h3>Probablemente no encaja si…</h3>
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        <li><span class="tick">✕</span> Buscas respuestas por chat en tiempo real.</li>
+                        <li><span class="tick">✕</span> No puedes sostener cambios básicos (sueño, comida, ritmo) por ahora.</li>
+                        <li><span class="tick">✕</span> Quieres saltarte exámenes cuando hacen falta.</li>
+                        <li><span class="tick">✕</span> Buscas una solución rápida sin seguimiento.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIO -->
+    <section class="bio">
+        <div class="container bio-grid">
+            <div class="bio-image">
+                <img src="foto-drChavez.png" alt="Dr. Jonathan Chávez">
+            </div>
+            <div>
+                <h2>¿Quién te acompaña?</h2>
+                <p class="subhead">
+                    Soy el Dr. Jonathan Chávez. Trabajo con un enfoque funcional, orientado a entender qué está sosteniendo tus síntomas
+                    y a recuperar estabilidad y bienestar con un plan medible.
+                </p>
+                <p class="subhead">
+                    No estoy peleado con especialistas. Si hace falta interconsultar o coordinar con tu médico, lo hago encantado,
+                    con lenguaje clínico para que todos estemos alineados.
+                </p>
+                <p class="subhead" style="margin-bottom:0;">
+                    Si quieres, también te explico el “por qué” detrás del plan: datos, gráficos y bibliografía (sin abrumarte),
+                    porque entender mejora la confianza y la adherencia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2>Preguntas comunes</h2>
+
+            <details>
+                <summary>¿Esto reemplaza a mi médico o especialista?</summary>
+                <p>No. Si tu caso lo requiere, coordinamos con tu especialista o te recomiendo atención local. Esto es un enfoque complementario, más profundo y ordenado.</p>
+            </details>
+
+            <details>
+                <summary>¿En la llamada gratis ya me das un tratamiento?</summary>
+                <p>No. La reunión de exploración es para entender tu caso y decirte si encaja. Si avanzamos, ahí sí entramos al proceso clínico formal.</p>
+            </details>
+
+            <details>
+                <summary>¿Qué incluye el acompañamiento por chat?</summary>
+                <p>Si eliges esa opción: 1 reporte semanal (obligatorio), dudas puntuales y ajustes simples. No es para urgencias. Si no envías el reporte, esa semana solo respondo logística.</p>
+            </details>
+
+            <details>
+                <summary>¿Qué pasa si no siento claridad después de la primera consulta pagada?</summary>
+                <p>Me lo dices el mismo día y te devuelvo el dinero. Prefiero ser transparente antes que estirar un proceso que no te sirve.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="agendar">
+        <div class="container">
+            <h2>¿Quieres que revisemos tu caso?</h2>
+            <p class="subhead" style="margin:0 auto 18px;max-width:760px;">
+                Agenda una reunión de exploración. La idea es entender qué te pasa y ver si este enfoque encaja contigo.
+            </p>
+
+            <a class="cta" href="https://wa.me/593989760520" target="_blank" rel="noopener">
+                💬 Agendar llamada de orientación
+            </a>
+            <span class="cta-subtext">Hablemos 20 min para entender tu caso y ver si este enfoque encaja.</span>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        © <span id="year"></span> Dr. Jonathan Chávez — Medicina Funcional
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
